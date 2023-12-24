@@ -10,38 +10,31 @@ const key = "4t1ZXKz6Ux4GMtPnGTwg98CC3COpY3lQLL1VuALkfvQ";
 
 botao.addEventListener("click", (event) => {
   event.preventDefault();
+  galeria.innerHTML = "";
   busca = pesquisa.value;
-  searchImg();
+  mostrarMais.style.display = "block";
+  buscarImagens();
 });
 
-function searchImg() {
+function buscarImagens() {
   fetch(
     `https://api.unsplash.com/search/photos?page=${pagina}&query=${busca}&client_id=${key}`
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      createImages(data.results);
+      criarImagens(data.results);
     });
 }
 
-function createImages(data) {
+function criarImagens(data) {
   data.map((data) => {
-    const div = document.createElement("div");
-    div.innerHTML = `<img src=${data.urls.small} />`;
-    galeria.append(div);
+    const img = document.createElement("img");
+    img.src = data.urls.small;
+    galeria.append(img);
   });
-
-  if (!botaoMostrarMiasCriado) {
-    const button = document.createElement("button");
-    button.innerHTML = "Mostrar mais";
-    mostrarMais.append(button);
-    botaoMostrarMiasCriado = true;
-  }
 }
 
 mostrarMais.addEventListener("click", () => {
   pagina += 1;
-  console.log(pagina);
-  searchImg();
+  buscarImagens();
 });

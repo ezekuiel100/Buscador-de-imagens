@@ -7,7 +7,6 @@
 body {
   display: flex;
   justify-content: center;
-  height: 100vh;
   font-family: sans-serif;
 }
 
@@ -25,42 +24,40 @@ form {
 
 header input[type="text"] {
   width: 500px;
-  background-color: rgb(218, 213, 213);
+  background-color: rgb(240, 239, 239);
   padding: 20px;
   font-size: 20px;
-  height: 60px;
   border: none;
 }
 
 header button {
   width: 100px;
-  background-color: orange;
+  background-color: #7a7ad1;
   color: #fff;
   font-weight: bold;
   font-size: 16px;
   border: none;
-}
-
-main {
-  width: 100%;
+  cursor: pointer;
 }
 
 .galeria {
-  display: grid;
-  grid-template-columns: repeat(3, 300px);
-
-  place-content: center;
+  max-width: 1200px;
+  column-count: 3;
 }
 
 .galeria img {
-  width: 300px;
-  height: 400px;
+  width: 100%;
 }
 
 .mostrarMais {
   display: flex;
-  padding: 30px;
-  margin: 20px 0;
-
+  padding: 20px;
+  margin: 20px auto 100px;
+  border: none;
   justify-content: center;
+  display: none;
+  background-color: #7a7ad1;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
 }
