@@ -6,7 +6,7 @@ let mostrarMais = document.querySelector(".mostrarMais");
 let busca;
 let pagina = 1;
 
-const key = "4t1ZXKz6Ux4GMtPnGTwg98CC3COpY3lQLL1VuALkfvQ";
+const key = "";
 
 botao.addEventListener("click", (event) => {
   event.preventDefault();
