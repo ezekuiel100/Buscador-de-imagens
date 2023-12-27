@@ -2,7 +2,7 @@ let galeria = document.querySelector(".galeria");
 let pesquisa = document.querySelector("#pesquisa");
 let botao = document.querySelector("button");
 let mostrarMais = document.querySelector(".mostrarMais");
-let botaoMostrarMiasCriado = false;
+
 let busca;
 let pagina = 1;
 
@@ -12,18 +12,15 @@ botao.addEventListener("click", (event) => {
   event.preventDefault();
   galeria.innerHTML = "";
   busca = pesquisa.value;
-  mostrarMais.style.display = "block";
   buscarImagens();
 });
 
-function buscarImagens() {
-  fetch(
+async function buscarImagens() {
+  const res = await fetch(
     `https://api.unsplash.com/search/photos?page=${pagina}&query=${busca}&client_id=${key}`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      criarImagens(data.results);
-    });
+  );
+  const data = await res.json();
+  criarImagens(data.results);
 }
 
 function criarImagens(data) {
@@ -32,9 +29,13 @@ function criarImagens(data) {
     img.src = data.urls.small;
     galeria.append(img);
   });
+
+  if (busca) {
+    mostrarMais.style.display = "block";
+  }
 }
 
 mostrarMais.addEventListener("click", () => {
-  pagina += 1;
+  pagina++;
   buscarImagens();
 });
